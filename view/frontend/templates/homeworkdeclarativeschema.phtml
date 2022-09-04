@@ -1,0 +1,50 @@
+<?php
+/** @var \Perspective\HomeworkDeclarativeSchema\Block\Template $block */
+
+$viewModel = $block->getData('view_model');
+
+$sales = 'Hoodie';
+$sales_date = "2022-08-31";
+$salesCollection = $viewModel->getSales($sales,$sales_date);
+$salesCollectionWithoutBonus = $viewModel->getSalesWithoutBonus($sales,$sales_date);
+echo "С бонусом";
+foreach($salesCollection as $salesItem){
+    $all_price = $salesItem->getData('product_quantity') * $salesItem->getData('product_price') * (1 - $salesItem->getData('bonus'));
+    echo "<pre>";
+    echo ("Название товара: " . $salesItem->getData('product_name'));
+    echo '<br>';
+    echo ("Количество товара: " . $salesItem->getData('product_quantity'));
+    echo '<br>';
+    echo ("Цена за единицу товара: " . $salesItem->getData('product_price') . '$');
+    echo '<br>';
+    echo ("Скидочный бонус покупателю: " . $salesItem->getData('bonus') * 100 . '%');
+    echo '<br>';
+    echo ("Всего выручки с продажи: " . $all_price . '$');
+    echo '<br>';
+    echo ("Дата продажи: " . $salesItem->getData('date_of_sale'));
+    echo '<br>';
+    echo "</pre>";
+}
+
+echo "<hr>";
+echo "Без бонуса";
+
+foreach($salesCollectionWithoutBonus as $salesItemWithoutBonus){
+    $all_price = $salesItemWithoutBonus->getData('product_quantity') * $salesItemWithoutBonus->getData('product_price');
+    echo "<pre>";
+    echo ("Название товара: " . $salesItemWithoutBonus->getData('product_name'));
+    echo '<br>';
+    echo ("Количество товара: " . $salesItemWithoutBonus->getData('product_quantity'));
+    echo '<br>';
+    echo ("Цена за единицу товара: " . $salesItemWithoutBonus->getData('product_price') . '$');
+    echo '<br>';
+    echo ("Скидочный бонус покупателю: " . $salesItemWithoutBonus->getData('bonus') * 100 . '%');
+    echo '<br>';
+    echo ("Всего выручки с продажи: " . $all_price . '$');
+    echo '<br>';
+    echo ("Дата продажи: " . $salesItemWithoutBonus->getData('date_of_sale'));
+    echo '<br>';
+    echo "</pre>";
+}
+
+?>

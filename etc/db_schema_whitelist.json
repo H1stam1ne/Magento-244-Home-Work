@@ -1,0 +1,16 @@
+{
+    "home_work_declarative_schema": {
+        "column": {
+            "entity_id": true,
+            "product_name": true,
+            "product_quantity": true,
+            "date_of_sale": true,
+            "discount": true,
+            "product_price": true,
+            "bonus": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    }
+}
